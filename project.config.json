@@ -60,6 +60,14 @@
 					"id": -1,
 					"name": "addTodo",
 					"pathName": "pages/addTodo/addTodo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "todoinfo",
+					"pathName": "pages/todoinfo/todoinfo",
+					"query": "id=0ec685215e4242470dcb45df6716a364",
 					"scene": null
 				}
 			]

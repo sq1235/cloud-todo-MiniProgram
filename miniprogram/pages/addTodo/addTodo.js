@@ -5,17 +5,49 @@ const todos = db.collection("todos");
 
 Page({
 
+  data:{
+    image:null
+  },
+
+  selectImg:function(e){
+    // var that = this
+    wx.chooseImage({
+      success: res => {
+        // console.log(res.tempFilePaths[0])
+        wx.cloud.uploadFile({
+          //随机名称
+          cloudPath: `${Math.floor(Math.random()*10000000)}.png`,
+          filePath: res.tempFilePaths[0],
+        }).then(res => {
+          console.log(res.fileID)
+          this.setData({
+            image: res.fileID
+          })
+        }).catch(err => {
+          console.error(err)
+        })
+      },
+    })
+  },
+
+
   onSubmit:function(e){
     // console.log(e.detail.value.title)
     todos.add({
       data:{
-        title: e.detail.value.title
+        title: e.detail.value.title,
+        image:this.data.image
       }
     }).then(res =>{
-      // console.log(res)
+      console.log(res._id)
       wx.showToast({
         title:"Success",
-        icon:"success"
+        icon:"success",
+        success:res2 => {
+          wx.redirectTo({
+            url: `../todoinfo/todoinfo?id=${res._id}`,
+          })
+        }
       })
     })
   },
