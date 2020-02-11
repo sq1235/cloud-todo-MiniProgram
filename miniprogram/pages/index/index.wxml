@@ -1,3 +1,9 @@
 <!--miniprogram/pages/index/index.wxml-->
+<van-cell-group>
 
-<van-button type="primary">按钮</van-button>
+  <block wx:for="{{tasks}}">
+    <van-cell title="{{item.title}}"/>
+  </block>
+
+
+</van-cell-group>
