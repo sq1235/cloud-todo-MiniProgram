@@ -16,6 +16,11 @@
         "van-cell": "vant-weapp/cell",
         "van-cell-group": "vant-weapp/cell-group",
         "van-icon": "vant-weapp/icon"
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "你的位置信息将用于任务的设定" 
+      }
     }
 
 }

@@ -1,4 +1,4 @@
-<form bindsubmit="onSubmit">
+<form bindsubmit="onSubmit" report-submit='{{true}}'>
 
   <input name="title"></input>
   <block wx:if='{{image}}'>
@@ -6,6 +6,7 @@
   </block>
  
   <button bindtap='selectImg'>选择图片</button>
+  <button bindtap="chooseLocation">选择位置</button>
   <button form-type="submit">提交</button>
 
 </form>

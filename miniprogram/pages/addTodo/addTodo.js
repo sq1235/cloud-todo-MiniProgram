@@ -9,6 +9,11 @@ Page({
     image:null
   },
 
+  pageData:{
+    locationObj:{}
+  },
+  
+
   selectImg:function(e){
     // var that = this
     wx.chooseImage({
@@ -32,14 +37,24 @@ Page({
 
 
   onSubmit:function(e){
-    // console.log(e.detail.value.title)
+
     todos.add({
       data:{
         title: e.detail.value.title,
-        image:this.data.image
+        image:this.data.image,
+        location:this.pageData.locationObj
       }
     }).then(res =>{
-      console.log(res._id)
+      //通知云函数
+      // console.log(e.detail.formId)
+      wx.cloud.callFunction({
+        name: 'msgMe',
+        data: {
+          formId: e.detail.formId,
+          taskId:res._id,
+        }
+      })
+      // console.log(res._id)
       wx.showToast({
         title:"Success",
         icon:"success",
@@ -52,7 +67,20 @@ Page({
     })
   },
 
-
+  chooseLocation:function(e){
+    wx.chooseLocation({
+      success: res => {
+        // console.log(res)
+        let locationObj={
+          latitude:res.latitude,
+          longitude: res.longitude,
+          name:res.name,
+          address:res.address
+        }
+        this.pageData.locationObj = locationObj
+      },
+    })
+  },
 
   /**
    * 页面的初始数据
