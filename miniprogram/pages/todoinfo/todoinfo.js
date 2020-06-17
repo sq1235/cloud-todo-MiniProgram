@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options)
+    console.log(options)
     this.pageData.id=options.id
     todos.doc(options.id).get().then(res => {
       console.log(res)
